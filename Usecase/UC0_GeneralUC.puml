@@ -1,0 +1,32 @@
+@startuml UC0_GeneralUC
+
+left to right direction
+skin rose
+scale 3
+
+actor User as user
+
+rectangle "Trackit" {
+    usecase "Đăng nhập" as dn
+    usecase "Đăng ký" as dk
+    usecase "Xem danh sách sản phẩm" as xdssp
+    usecase "Xem thông tin sản phẩm" as xctsp
+    usecase "Tìm kiếm sản phẩm" as tksp
+    usecase "So sánh sản phẩm" as sssp
+    usecase "Xem danh sách đơn hàng" as xdsdh
+    usecase "Xem thông tin đơn hàng" as xctdh
+    usecase "Xem thống kê chi tiêu" as xtkct
+}
+
+user --- dn
+user --- dk
+user --- xdssp
+user --- xctdh
+user --- tksp
+user --- sssp
+user --- xdsdh
+user --- xctdh
+user --- xtkct
+user --- xctsp
+
+@enduml

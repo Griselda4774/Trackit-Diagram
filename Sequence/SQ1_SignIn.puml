@@ -1,0 +1,15 @@
+@startuml UC0_GeneralUC
+
+skin rose
+scale 3
+hide footbox
+
+actor "User" as user
+boundary "User Interface" as ui
+
+autonumber
+user++
+user -> ui: Open
+ui -> user : Close
+
+@enduml
