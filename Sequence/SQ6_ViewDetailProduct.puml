@@ -1,0 +1,22 @@
+@startuml SQ6_ViewDetailProduct
+
+skin rose
+scale 3
+hide footbox
+
+actor "User" as user
+boundary "User Interface" as ui
+control "Product Controller" as pCon
+entity "Product Service" as pSer
+
+autonumber
+user++
+user -> ui++ : Access detail product page
+ui -> pCon++ : Request detail product info
+pCon -> pSer++ : Request detail product info
+pSer -> pSer : Get detail product info
+pSer -> pCon-- : Return detail product info
+pCon -> ui-- : Return detail product info
+ui -> user-- : Display detail product page
+user--
+@enduml

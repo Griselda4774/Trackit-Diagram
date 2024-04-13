@@ -1,0 +1,22 @@
+@startuml SQ9_ViewSpendingStatistics
+
+skin rose
+scale 3
+hide footbox
+
+actor "User" as user
+boundary "User Interface" as ui
+control "Order Controller" as oCon
+entity "Order Service" as oSer
+
+autonumber
+user++
+user -> ui++ : Access Statistic page
+ui -> oCon++ : Request statistic info
+oCon -> oSer++ : Request statistic info
+oSer -> oSer : Get statistic info
+oSer -> oCon-- : Return statistic info
+oCon -> ui-- : Return statistic info
+ui -> user-- : Display statistic info
+user--
+@enduml

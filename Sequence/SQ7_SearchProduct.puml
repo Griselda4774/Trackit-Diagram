@@ -1,0 +1,32 @@
+@startuml SQ7_SearchProduct
+
+skin rose
+scale 3
+hide footbox
+
+actor "User" as user
+boundary "User Interface" as ui
+control "Product Controller" as pCon
+entity "Product Service" as pSer
+
+autonumber
+user++
+user -> ui++ : Access home page
+user -> ui : Fill in information to search bar
+ui -> pCon++ : Request product info
+pCon -> pSer : Request product info
+pSer -> pSer : Get product info
+
+alt information invalid
+    pSer -> pCon : Return list product is empty
+    pCon -> ui : Return list product is empty
+    ui -> user : Display list product is empty
+else information valid
+    autonumber 6
+    pSer -> pCon : Return list product matches the information 
+    pCon -> ui : Return list product matches the information 
+    ui -> user : Display list product
+end
+
+user--
+@enduml
