@@ -1,0 +1,22 @@
+@startuml SQ3_ViewProductList
+
+skin rose
+scale 3
+hide footbox
+
+actor "User" as user
+boundary "User Interface" as ui
+control "Product Controller" as aCon
+entity "Product Service" as aSer
+
+autonumber
+user++
+user -> ui++ : Access home page
+ui -> aCon++ : Request product list info
+aCon -> aSer++ : Request product list info
+aSer -> aSer : Get product list info
+aSer -> aCon-- : Return product list info
+aCon -> ui-- : Return product list info
+ui -> user-- : Display home page
+user--
+@enduml

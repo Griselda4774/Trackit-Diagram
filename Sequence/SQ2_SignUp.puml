@@ -1,4 +1,4 @@
-@startuml SQ1_SignIn
+@startuml SQ2_SignUp
 
 skin rose
 scale 3
@@ -13,22 +13,22 @@ database "Database" as db
 
 autonumber
 user++
-user -> ui++ : Access sign in page
-ui -> user : Display sign in page
-user -> ui : Enter account info\nand click "Sign In" button
-ui -> aCon++ : Send sign in request\nand account info
-aCon -> aSer++ : Send sign in request\nand account info
-aSer -> aRepo++ : Get account info
-aRepo -> db++ : Query select account info
-db --> aRepo-- : Return account info
-aRepo --> aSer-- : Return account info
-aSer -> aSer : Compare account info
-alt user not exist or wrong password
+user -> ui++ : Access sign up page
+ui -> user : Display sign up page
+user -> ui : Enter account info\nand click "Sign Up" button
+ui -> aCon++ : Send sign up request\nand account info
+aCon -> aSer++ : Send sign up request\nand account info
+aSer -> aSer : Check account info
+alt account info is invalid
     aSer -> aCon : Return error message
     aCon -> ui : Return error message
     ui -> user : Display error message
 else account info is valid
-    autonumber 11
+    autonumber 7
+    aSer -> aRepo++ : Create new account
+    aRepo -> db++ : Query inser account info
+    db -> aRepo-- : Return success message
+    aRepo -> aSer-- : Return success message
     aSer -> aCon-- : Return success message
     aCon -> ui-- : Return success message
     ui -> user-- : Display home page

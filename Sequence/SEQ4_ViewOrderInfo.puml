@@ -1,0 +1,22 @@
+@startuml SQ3_ViewOrderInfo
+
+skin rose
+scale 3
+hide footbox
+
+actor "User" as user
+boundary "User Interface" as ui
+control "Order Controller" as aCon
+entity "Order Service" as aSer
+
+autonumber
+user++
+user -> ui++ : Access order detail page
+ui -> aCon++ : Request order info
+aCon -> aSer++ : Request order info
+aSer -> aSer : Get order info
+aSer -> aCon-- : Return order info
+aCon -> ui-- : Return order info
+ui -> user-- : Display order detail page
+user--
+@enduml
